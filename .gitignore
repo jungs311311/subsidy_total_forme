@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+business/report.md
+business/report_title.txt
