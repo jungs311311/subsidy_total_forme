@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-10-25T11:52:40.493759+00:00",
+  "mode": "auto",
+  "sources": {
+    "business_sheet": {
+      "ok": true
+    },
+    "personal_sheet": {
+      "ok": true
+    },
+    "bizinfo": {
+      "ok": true,
+      "method": "mirror",
+      "reason": "no_key"
+    },
+    "gov24": {
+      "ok": true,
+      "method": "mirror",
+      "reason": "no_key"
+    },
+    "bokjiro": {
+      "ok": true,
+      "method": "mirror",
+      "reason": "no_key"
+    },
+    "youth": {
+      "ok": true,
+      "method": "mirror",
+      "reason": "no_key"
+    }
+  }
+}
