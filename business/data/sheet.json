@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-25 19:40",
+ "updatedAt": "2026-10-26 09:29",
  "source": "https://docs.google.com/spreadsheets/d/13crp7Mxc9zroQjgtSpVjeMvLAGd87dPfCFFQY2ZevDY",
  "programs": [
   {
@@ -662,7 +662,7 @@
    "k": "retail",
    "n": "도매·소매업 (약국·편의점·의류 등)",
    "small": 60,
-   "mid": 1000,
+   "mid": 1200,
    "ss": 5,
    "note": ""
   },
@@ -726,7 +726,7 @@
    "k": "it",
    "n": "정보통신업 (소프트웨어·출판 등)",
    "small": 50,
-   "mid": 800,
+   "mid": 1000,
    "ss": 5,
    "note": ""
   },
@@ -750,7 +750,7 @@
    "k": "trans",
    "n": "운수·창고업",
    "small": 100,
-   "mid": 800,
+   "mid": 1000,
    "ss": 10,
    "note": ""
   },
@@ -774,7 +774,7 @@
    "k": "biz",
    "n": "사업시설관리·사업지원·임대 서비스업",
    "small": 30,
-   "mid": 600,
+   "mid": 800,
    "ss": 5,
    "note": ""
   }
@@ -878,7 +878,7 @@
    "org": "중소벤처기업부·창업진흥원",
    "cat": "재기",
    "tag": "경쟁 선발",
-   "amt": "사업화 자금 평균 7,000만원 · 최대 1억원",
+   "amt": "사업화 자금 평균 약 6,700만원 · 최대 1억원",
    "when": "2026년 접수 끝남 (4~5월)",
    "about": "폐업한 경험이 있는 예비재창업자와 재창업 7년 이내 기업에 사업화 자금과 재창업 교육·멘토링을 지원해요.",
    "url": "https://www.k-startup.go.kr",
@@ -892,8 +892,8 @@
    "extra": "",
    "match": "재도전성공패키지",
    "show": "Y",
-   "checked": "2026-10-25",
-   "basis": "2026 재도전성공패키지(추경) 공고 (접수 2026.4.17~5.7)"
+   "checked": "2026-10-26",
+   "basis": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000120987 (2026 재도전성공패키지(추경), 접수 2026.4.17~5.7)"
   },
   {
    "name": "청년전용창업자금",
@@ -1080,6 +1080,51 @@
    "show": "Y",
    "checked": "2026-10-25",
    "basis": "소상공인365 (소상공인시장진흥공단)"
+  },
+  {
+   "name": "모두의 창업 프로젝트",
+   "org": "중소벤처기업부·창업진흥원",
+   "cat": "받는 돈",
+   "tag": "경쟁 선발",
+   "amt": "1단계 1인 200만원 → 지역 오디션 100명 1억원 → 최종 우승 10억원 이상",
+   "when": "2026년 접수 끝남 (2차 8~9월)",
+   "about": "아이디어만 있으면 누구나 신청할 수 있는 2026년 신규 사업이에요. 활동비·AI 솔루션·멘토링으로 시작해 지역·전국 오디션을 거치며 지원이 커져요. 뽑힌 사람의 80% 이상이 예비창업자예요.",
+   "url": "https://www.modoo.or.kr",
+   "ageMin": null,
+   "ageMax": null,
+   "fields": [
+    "전체"
+   ],
+   "noFields": [],
+   "must": "",
+   "extra": "",
+   "match": "모두의창업",
+   "show": "Y",
+   "checked": "2026-10-26",
+   "basis": "중기부 공고 제2026-511호, https://www.korea.kr/news/policyNewsView.do?newsId=148958899"
+  },
+  {
+   "name": "K-푸드 창업사관학교",
+   "org": "농림축산식품부·한국식품산업클러스터진흥원",
+   "cat": "받는 돈",
+   "tag": "경쟁 선발",
+   "amt": "교육·컨설팅·투자 연계·사업화 지원",
+   "when": "2026년 접수 끝남 (2~3월)",
+   "about": "식품 분야로 창업하려는 청년 예비창업자를 뽑아 교육, 기업 진단·컨설팅, 투자 연계, 사업화를 지원해요. 2026년에 처음 시작했어요.",
+   "url": "https://www.foodpolis.kr/dfip/fo/main.do",
+   "ageMin": 19,
+   "ageMax": 39,
+   "fields": [
+    "음식",
+    "농업"
+   ],
+   "noFields": [],
+   "must": "",
+   "extra": "음식:식당·카페가 아니라 식품 제조·가공 쪽 창업이어야 해요",
+   "match": "K-푸드창업사관학교|K푸드창업사관학교",
+   "show": "Y",
+   "checked": "2026-10-26",
+   "basis": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000118362"
   }
  ],
  "warnings": []

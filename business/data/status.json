@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-25T19:41+09:00",
+ "updatedAt": "2026-10-26T09:29+09:00",
  "programs": {
   "소상공인 경영안정 바우처": {
    "kind": "notice",
@@ -917,6 +917,16 @@
   },
   "소상공인365 상권분석": {
    "kind": "law",
+   "national": [],
+   "local": []
+  },
+  "모두의 창업 프로젝트": {
+   "kind": "notice",
+   "national": [],
+   "local": []
+  },
+  "K-푸드 창업사관학교": {
+   "kind": "notice",
    "national": [],
    "local": []
   }

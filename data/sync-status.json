@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-25T11:54:14.902854+00:00",
+  "checked_at": "2026-10-26T00:29:41.670934+00:00",
   "mode": "auto",
   "sources": {
     "business_sheet": {
@@ -10,8 +10,7 @@
     },
     "bizinfo": {
       "ok": true,
-      "method": "mirror",
-      "reason": "no_key"
+      "method": "api"
     },
     "gov24": {
       "ok": true,
@@ -25,8 +24,7 @@
     },
     "youth": {
       "ok": true,
-      "method": "mirror",
-      "reason": "no_key"
+      "method": "api"
     }
   }
 }
