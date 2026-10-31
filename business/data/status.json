@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-30T11:02+09:00",
+ "updatedAt": "2026-10-31T10:41+09:00",
  "programs": {
   "소상공인 경영안정 바우처": {
    "kind": "notice",
@@ -233,18 +233,6 @@
    "national": [],
    "local": [
     {
-     "id": "PBLN_000000000122587",
-     "title": "[대전] 2026년 소상공인 육아휴직자 대체인력 인건비 지원사업 모집 변경 공고",
-     "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000122587",
-     "org": "대전광역시",
-     "start": "2026-01-30",
-     "end": "2026-10-30",
-     "period": "2026-01-30 ~ 2026-10-30",
-     "regions": [
-      "대전"
-     ]
-    },
-    {
      "id": "PBLN_000000000119253",
      "title": "[전북] 2026년 육아휴직 대체인력 근로자 지원사업 모집 공고",
      "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000119253",
@@ -341,18 +329,6 @@
     }
    ],
    "local": [
-    {
-     "id": "PBLN_000000000127101",
-     "title": "[울산] 2026년 2차 디지털커머스 전문기관(소담스퀘어 in 울산) 소상공인 디지털커머스 온라인 판로 지원사업 모집 공고",
-     "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000127101",
-     "org": "중소벤처기업부",
-     "start": "2026-10-08",
-     "end": "2026-10-30",
-     "period": "2026-10-08 ~ 2026-10-30",
-     "regions": [
-      "울산"
-     ]
-    },
     {
      "id": "PBLN_000000000125890",
      "title": "[울산] 2026년 소상공인 온라인 판로ㆍ마케팅 지원 사업 공고",
@@ -771,20 +747,7 @@
      "regions": []
     }
    ],
-   "local": [
-    {
-     "id": "PBLN_000000000124856",
-     "title": "[부산] 2026년 여성기업 전시회 지원(마케팅) 지원 참여기업 모집 공고",
-     "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000124856",
-     "org": "부산광역시",
-     "start": "2026-07-28",
-     "end": "2026-10-30",
-     "period": "2026-07-28 ~ 2026-10-30",
-     "regions": [
-      "부산"
-     ]
-    }
-   ]
+   "local": []
   },
   "장애인기업 지원": {
    "kind": "notice",
