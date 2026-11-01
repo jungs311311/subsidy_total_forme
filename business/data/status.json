@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-31T10:41+09:00",
+ "updatedAt": "2026-11-01T10:18+09:00",
  "programs": {
   "소상공인 경영안정 바우처": {
    "kind": "notice",
@@ -54,18 +54,6 @@
      "period": "2026-01-26 ~ 2026-12-31",
      "regions": [
       "제주"
-     ]
-    },
-    {
-     "id": "PBLN_000000000127004",
-     "title": "[충남] 2026년 2차 1인 자영업자 고용보험료 지원사업 수정 공고",
-     "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000127004",
-     "org": "충청남도",
-     "start": null,
-     "end": null,
-     "period": "예산 소진시까지",
-     "regions": [
-      "충남"
      ]
     }
    ]
