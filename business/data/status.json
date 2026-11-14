@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-13T11:43+09:00",
+ "updatedAt": "2026-11-14T11:31+09:00",
  "programs": {
   "소상공인 경영안정 바우처": {
    "kind": "notice",
@@ -624,18 +624,7 @@
   },
   "희망리턴패키지 경영개선 지원": {
    "kind": "notice",
-   "national": [
-    {
-     "id": "PBLN_000000000121182",
-     "title": "2026년 희망리턴패키지 재기사업화(경영개선) 위기 소상공인 진단ㆍ멘토링 지원 모집 공고",
-     "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000121182",
-     "org": "중소벤처기업부",
-     "start": null,
-     "end": null,
-     "period": "예산 소진시까지",
-     "regions": []
-    }
-   ],
+   "national": [],
    "local": []
   },
   "희망리턴패키지 (폐업·재창업)": {
