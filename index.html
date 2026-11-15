@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>내 맞춤 지원 · 최신 30</title>
+<link rel="icon" href="data:,">
+<meta name="description" content="개인 보조금과 사업자 지원 중 가장 최근에 올라온 30개를 내 조건으로 해당·애매·미해당으로 나눠 보여줍니다.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@700&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+:root{
+  --bg:#F3F5F4; --paper:#FFFFFF; --ink:#17201E; --muted:#5B6964; --line:#D9E0DD;
+  --accent:#1E6A56; --accent-soft:#E2EFEA; --warn:#9A5B07; --warn-soft:#FBF0DD; --off:#8A9590; --off-soft:#EEF1F0;
+  --info:#185FA5; --info-soft:#E6F1FB; --biz:#6B4BA8; --biz-soft:#EFEAF8;
+  --f-display:"Gowun Batang","Noto Serif KR",serif;
+  --f-body:"IBM Plex Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-num:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#111816; --paper:#18211E; --ink:#E6ECEA; --muted:#9AA8A3; --line:#2B3733;
+  --accent:#5FC0A1; --accent-soft:#1D332C; --warn:#E5AE5C; --warn-soft:#33281A; --off:#7E8B86; --off-soft:#1E2724;
+  --info:#85B7EB; --info-soft:#0C2A47; --biz:#B9A2E8; --biz-soft:#2A2340; color-scheme:dark}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.6;
+  padding:20px max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px))}
+.wrap{max-width:820px;margin:0 auto;display:grid;gap:18px}
+.stamp{display:inline-block;font-family:var(--f-num);font-size:12px;letter-spacing:.04em;color:var(--accent);border:1px solid var(--accent);border-radius:4px;padding:1px 8px;margin-bottom:10px}
+h1{font-family:var(--f-display);font-size:clamp(26px,5vw,34px);line-height:1.25;margin:0;text-wrap:balance}
+header p{margin:6px 0 0;color:var(--muted);max-width:62ch}
+.box{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+/* 내 조건 요약 */
+.me{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.me .lab{font-weight:600}
+.me .chips{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 300px}
+.chip{font-size:13px;background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:1px 10px;white-space:nowrap}
+.btn{font:inherit;font-weight:600;border-radius:8px;padding:8px 16px;cursor:pointer;border:1px solid var(--accent);background:var(--paper);color:var(--accent)}
+.btn.main{background:var(--accent);color:var(--paper)}
+.btn:focus-visible,.tab:focus-visible,.det:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+/* 조건 입력 */
+form{display:grid;gap:16px}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:10px}
+legend{font-family:var(--f-display);font-size:19px;padding:0;margin-bottom:6px}
+.grid{display:grid;gap:10px 14px;grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.f{display:grid;gap:4px;font-size:14px;min-width:0}
+.f>span{font-weight:600}
+.f small{color:var(--muted);font-size:12.5px;line-height:1.4}
+select,input[type=number]{font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 10px;min-width:0;width:100%}
+.checks{display:flex;flex-wrap:wrap;gap:6px}
+.ck{display:flex;gap:6px;align-items:flex-start;font-size:14px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}
+.ck input{margin-top:4px}
+.formbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.formbar .hint{color:var(--muted);font-size:13px}
+/* 탭 */
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+.tab{font:inherit;font-size:14px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:5px 14px;cursor:pointer}
+.tab[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.tab b{font-family:var(--f-num);font-weight:500;margin-left:4px}
+.status{font-size:13px;color:var(--muted)}
+/* 카드 */
+.list{display:grid;gap:10px}
+.card{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:6px;min-width:0}
+.card.v-ok{border-left-color:var(--accent)}
+.card.v-chk{border-left-color:var(--warn)}
+.card.v-no{border-left-color:var(--off)}
+.card.v-no h3 a,.card.v-no h3{color:var(--muted)}
+.top{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12.5px}
+.side{font-weight:600;border-radius:4px;padding:0 7px}
+.side.per{background:var(--info-soft);color:var(--info)}
+.side.biz{background:var(--biz-soft);color:var(--biz)}
+.src,.date{color:var(--muted)}
+.verdict{margin-left:auto;font-weight:700;border-radius:999px;padding:1px 10px;white-space:nowrap}
+.verdict.ok{background:var(--accent-soft);color:var(--accent)}
+.verdict.chk{background:var(--warn-soft);color:var(--warn)}
+.verdict.no{background:var(--off-soft);color:var(--off)}
+.card h3{font-size:15.5px;line-height:1.45;margin:0;overflow-wrap:anywhere}
+.card h3 a{color:var(--ink);text-decoration:none}
+.card h3 a:hover{text-decoration:underline;color:var(--accent)}
+.meta{display:flex;flex-wrap:wrap;gap:4px 10px;font-size:13px;color:var(--muted)}
+.meta .amt{font-weight:700;color:var(--accent)}
+.dday{font-family:var(--f-num);font-size:12px;border-radius:999px;padding:0 8px;border:1px solid var(--line)}
+.dday.soon{background:var(--warn);border-color:var(--warn);color:var(--paper)}
+.why{list-style:none;margin:0;padding:0;display:grid;gap:2px;font-size:13.5px;line-height:1.45}
+.why li{display:flex;gap:6px}
+.why li i{font-style:normal;font-family:var(--f-num);font-weight:700;flex:none;width:1em}
+.why .ok{color:var(--accent)}.why .chk{color:var(--warn)}.why .no{color:var(--off)}
+.det{justify-self:start;font:inherit;font-size:12.5px;font-weight:600;color:var(--accent);background:none;border:0;padding:0;cursor:pointer}
+.body{font-size:13.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;display:grid;gap:4px;overflow-wrap:anywhere}
+.body b{color:var(--ink);font-weight:600;margin-right:4px}
+.more{justify-self:center;margin-top:4px}
+.empty{color:var(--muted);text-align:center;padding:24px 0}
+.note{font-size:12.5px;color:var(--muted);line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <span class="stamp">FOR ME · 최신 30</span>
+  <h1>나에게 맞는 최신 지원</h1>
+  <p>개인 보조금과 사업자 지원을 합쳐서 가장 최근에 올라온 30개를 보여줘요. 내 조건으로 <b>해당 · 애매 · 미해당</b>을 나눠요. 해당하지 않는 것도 이유와 함께 보여줘요.</p>
+</header>
+
+<section class="box me" id="meBox" hidden>
+  <span class="lab">내 조건</span>
+  <div class="chips" id="meChips"></div>
+  <button type="button" class="btn" id="edit">조건 바꾸기</button>
+</section>
+
+<section class="box" id="formBox">
+<form id="f" autocomplete="off">
+  <fieldset>
+    <legend>나 (개인)</legend>
+    <div class="grid">
+      <label class="f"><span>사는 곳 (시·도)</span><select id="reg"></select></label>
+      <label class="f" id="sggWrap"><span>시·군·구</span><select id="sgg"></select></label>
+      <label class="f"><span>나이 (만)</span><input type="number" id="age" min="0" max="120" inputmode="numeric" placeholder="예: 40"></label>
+      <label class="f"><span>하는 일</span><select id="job"><option>자영업</option><option>재직</option><option>구직 중</option><option>농업·어업</option><option>학생</option><option>기타</option></select></label>
+      <label class="f"><span>결혼</span><select id="marital"><option>미혼</option><option>결혼 예정</option><option>신혼 (7년 이내)</option><option>기혼 (7년 넘음)</option></select></label>
+      <label class="f"><span>자녀 수</span><input type="number" id="kids" min="0" max="15" inputmode="numeric" value="0"></label>
+      <label class="f"><span>막내 나이 (만)</span><input type="number" id="young" min="0" max="40" inputmode="numeric" placeholder="자녀 있으면"></label>
+      <label class="f"><span>집</span><select id="house"><option>무주택 · 월세</option><option>무주택 · 전세</option><option>무주택 · 부모님과 같이 삶</option><option>자가</option></select></label>
+      <label class="f"><span>장애</span><select id="dis"><option value="">없음</option><option value="heavy">심한 장애</option><option value="light">심하지 않은 장애</option></select></label>
+      <label class="f"><span>가구 연소득 (만원)</span><input type="number" id="ann" min="0" inputmode="numeric" placeholder="예: 6000"><small id="incHint">중위소득 %를 계산해요</small></label>
+      <label class="f"><span>가구원 수</span><input type="number" id="hh" min="1" max="12" inputmode="numeric" placeholder="비우면 자동"></label>
+    </div>
+    <div class="checks">
+      <label class="ck"><input type="checkbox" id="preg"> 임신 중 (본인·배우자)</label>
+      <label class="ck"><input type="checkbox" id="single"> 한부모·조손 가정</label>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>내 사업장</legend>
+    <div class="checks"><label class="ck"><input type="checkbox" id="noBiz"> 사업자등록이 없어요 (사업자 지원은 모두 미해당으로)</label></div>
+    <div class="grid" id="bizFields">
+      <label class="f"><span>업종</span><select id="ind"></select></label>
+      <label class="f"><span>세부 업종</span><select id="sub"></select></label>
+      <label class="f"><span>연 매출 (만원)</span><input type="number" id="rev" min="0" inputmode="numeric" placeholder="예: 50000 (5억)"><small id="grade"></small></label>
+      <label class="f"><span>상시 직원 수 (대표 제외)</span><input type="number" id="emp" min="0" inputmode="numeric" value="0"></label>
+      <label class="f"><span>업력</span><select id="yrs"><option value="0">1년 미만</option><option value="1">1~3년</option><option value="3">3~7년</option><option value="7">7년 이상</option></select></label>
+    </div>
+    <div class="checks" id="bizChecks">
+      <label class="ck"><input type="checkbox" id="woman"> 여성 대표</label>
+      <label class="ck"><input type="checkbox" id="hire"> 직원을 새로 뽑을 예정</label>
+      <label class="ck"><input type="checkbox" id="hireYouth"> 청년(15~34세)을 정규직으로 뽑을 예정</label>
+      <label class="ck"><input type="checkbox" id="staffUp"> 올해 직원 수가 늘었음</label>
+      <label class="ck"><input type="checkbox" id="leave"> 직원이 육아휴직을 쓸 예정</label>
+      <label class="ck"><input type="checkbox" id="drop"> 매출이 줄었음</label>
+      <label class="ck"><input type="checkbox" id="debtTrouble"> 대출 상환이 어렵거나 연체 중</label>
+      <label class="ck"><input type="checkbox" id="credit"> 신용점수가 낮은 편 (744점 이하)</label>
+      <label class="ck"><input type="checkbox" id="close"> 폐업·재기를 준비 중</label>
+    </div>
+  </fieldset>
+
+  <div class="formbar">
+    <button type="submit" class="btn main">이 조건으로 고정</button>
+    <button type="button" class="btn" id="cancel" hidden>취소</button>
+    <span class="hint">이 기기 브라우저에만 저장돼요. 인터넷에 올라가지 않아요.</span>
+  </div>
+</form>
+</section>
+
+<section id="results" class="wrap" style="gap:12px">
+  <div class="tabs" id="tabs" role="group" aria-label="판정으로 거르기"></div>
+  <div class="status" id="status">불러오는 중…</div>
+  <div class="list" id="list" aria-live="polite"></div>
+  <button type="button" class="btn more" id="more" hidden></button>
+  <p class="note">판정은 공고의 조건 코드와 제목·대상 글의 단어로 자동으로 했어요. 틀릴 수 있으니 신청 전에 공고문을 꼭 확인하세요. 개인 지원은 전국·대구·경북 자료, 사업자 지원은 기업마당의 소상공인·개인사업자 관련 공고만 담겨 있어요.</p>
+</section>
+</div>
+
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+const esc=t=>String(t??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const safeUrl=u=>/^https?:\/\//.test(u||"")?u:"";
+const KEY="forme.profile.v1";
+const won=m=>{m=Math.max(0,Math.round(m||0));const e=Math.floor(m/10000),r=m%10000;return e?e.toLocaleString()+"억"+(r?" "+r.toLocaleString()+"만원":"원"):r.toLocaleString()+"만원"};
+const PAGE=10,LIMIT=30;
+
+// ---------- 지역 ----------
+const SIDO=["서울","부산","대구","인천","광주","대전","울산","세종","경기","강원","충북","충남","전북","전남","경북","경남","제주"];
+const SGG={
+  "대구":["중구","동구","서구","남구","북구","수성구","달서구","달성군","군위군"],
+  "경북":["포항시","경주시","김천시","안동시","구미시","영주시","영천시","상주시","문경시","경산시","의성군","청송군","영양군","영덕군","청도군","고령군","성주군","칠곡군","예천군","봉화군","울진군","울릉군"]
+};
+
+// ---------- 업종 (내 사업장 지원 찾기와 같은 표) ----------
+let IND=[
+  {k:"retail",n:"도매·소매업 (약국·편의점·의류 등)",small:60,mid:1000,ss:5},
+  {k:"food",n:"숙박·음식점업 (식당·카페)",small:15,mid:400,ss:5},
+  {k:"svc",n:"수리·기타 개인서비스 (미용·세탁 등)",small:15,mid:600,ss:5},
+  {k:"health",n:"보건업·사회복지 (의원·요양 등)",small:15,mid:600,ss:5},
+  {k:"edu",n:"교육 서비스업 (학원 등)",small:15,mid:400,ss:5},
+  {k:"pro",n:"전문·과학·기술 서비스업",small:30,mid:600,ss:5},
+  {k:"art",n:"예술·스포츠·여가 서비스업",small:30,mid:600,ss:5},
+  {k:"estate",n:"부동산업",small:40,mid:400,ss:5},
+  {k:"it",n:"정보통신업 (소프트웨어·출판 등)",small:50,mid:800,ss:5},
+  {k:"mfg",n:"제조업 (대표값, 세부업종별 상이)",small:120,mid:1500,ss:10},
+  {k:"build",n:"건설업",small:80,mid:1200,ss:10},
+  {k:"trans",n:"운수·창고업",small:100,mid:800,ss:10},
+  {k:"farm",n:"농업·임업·어업",small:80,mid:1000,ss:5},
+  {k:"fin",n:"금융 및 보험업",small:100,mid:400,ss:5},
+  {k:"biz",n:"사업시설관리·사업지원·임대 서비스업",small:30,mid:600,ss:5}
+];
+// 주된 업종별 세부 업종 (x=정책자금 제외 업종)
+const SUB={
+ retail:[
+  {c:"47811",n:"약국, 한약국",x:"pharm"},
+  {c:"47813",n:"화장품, 비누 및 방향제 소매업"},
+  {c:"47121",n:"슈퍼마켓"},
+  {c:"47122",n:"체인화 편의점"},
+  {c:"47911",n:"전자상거래 소매업 (일반 상품)"},
+  {c:"47911·47912 중",n:"전자상거래로 도박기구·성인용품 판매",x:"gambledev",vice:1},
+  {c:"47859 중",n:"성인용품 판매점",x:"adultshop",vice:1},
+  {c:"47640 중",n:"도박·사행성 오락기구 소매업",x:"gambledev",vice:1},
+  {c:"47993",n:"다단계 방문판매",x:"mlm"},
+  {c:"46102·46209·46333",n:"담배 중개업, 잎담배·담배 도매업",x:"tobacco"},
+  {c:"46463 중",n:"도박·사행성 오락기구 도매업",x:"gambledev",vice:1},
+  {c:"",n:"그 밖의 도매·소매업"}],
+ food:[
+  {c:"56111",n:"한식 일반 음식점업"},
+  {c:"56221",n:"커피 전문점"},
+  {c:"56213",n:"생맥주 전문점"},
+  {c:"56219",n:"기타 주점업"},
+  {c:"56211",n:"일반유흥주점업",x:"bar",vice:1},
+  {c:"56212",n:"무도유흥주점업",x:"bar",vice:1},
+  {c:"551",n:"일반 및 생활 숙박시설 운영업 (호텔·모텔·펜션 등)"},
+  {c:"",n:"그 밖의 숙박·음식점업"}],
+ svc:[
+  {c:"96112",n:"두발 미용업"},
+  {c:"96113",n:"피부 미용업"},
+  {c:"96912",n:"가정용 세탁업"},
+  {c:"95",n:"개인 및 소비용품 수리업"},
+  {c:"9612 중",n:"증기탕 및 안마시술소",x:"massage",vice:1},
+  {c:"96992",n:"점술 및 유사 서비스업",x:"fortune"},
+  {c:"96999 중",n:"휴게텔, 키스방, 대화방",x:"kiss",vice:1},
+  {c:"",n:"그 밖의 개인 서비스업"}],
+ health:[
+  {c:"86201",n:"일반 의원",x:"health"},
+  {c:"86202",n:"치과 의원",x:"health"},
+  {c:"86203",n:"한의원",x:"health"},
+  {c:"861",n:"병원",x:"health"},
+  {c:"86902",n:"유사 의료업",ok:"보건업이지만 정책자금 제외 업종에서 예외로 신청 가능"},
+  {c:"87",n:"사회복지 서비스업 (어린이집·노인요양시설 등)"},
+  {c:"",n:"그 밖의 보건업",x:"health"}],
+ edu:[
+  {c:"855",n:"일반 교습 학원"},
+  {c:"856",n:"기타 교육기관 (예체능·외국어 학원 등)"},
+  {c:"",n:"그 밖의 교육 서비스업"}],
+ pro:[
+  {c:"71101",n:"변호사업",x:"legal"},
+  {c:"71103",n:"법무사업",x:"legal"},
+  {c:"71201",n:"공인회계사업",x:"legal"},
+  {c:"71202",n:"세무사업",x:"legal"},
+  {c:"73100",n:"수의업",x:"vet"},
+  {c:"73904",n:"감정평가업",x:"apprais"},
+  {c:"713",n:"광고업"},
+  {c:"732",n:"전문 디자인업"},
+  {c:"",n:"그 밖의 전문·과학·기술 서비스업"}],
+ art:[
+  {c:"91121",n:"골프장 운영업",x:"golf"},
+  {c:"91291",n:"무도장 운영업",x:"dance",vice:1},
+  {c:"91242",n:"카지노 운영업",x:"casino",vice:1},
+  {c:"91249",n:"기타 사행시설 관리 및 운영업",x:"casino",vice:1},
+  {c:"91113",n:"경주장 및 동물 경기장 운영업",x:"casino"},
+  {c:"91122",n:"성인용 게임장, 성인 오락실, 성인 PC방, 전화방",x:"adultgame",vice:1},
+  {c:"",n:"일반 PC방, 노래연습장"},
+  {c:"",n:"헬스장·당구장 등 스포츠시설 운영업"},
+  {c:"90",n:"창작 및 예술관련 서비스업"},
+  {c:"",n:"그 밖의 여가 서비스업"}],
+ estate:[
+  {c:"68111",n:"주거용 건물 임대업",x:"estate",ei:1},
+  {c:"68112",n:"비주거용 건물 임대업 (상가·사무실)",x:"estate",ei:1},
+  {c:"68112 중",n:"공유오피스·공유주방 운영",ok:"부동산업이지만 정책자금 제외 업종에서 예외로 신청 가능",ei:1},
+  {c:"6812",n:"부동산 개발 및 공급업",x:"estate"},
+  {c:"6821",n:"부동산 관리업",ok:"부동산업이지만 정책자금 제외 업종에서 예외로 신청 가능"},
+  {c:"68221",n:"부동산 중개 및 대리업",six:1},
+  {c:"68224",n:"부동산 분양 대행업",six:1}],
+ it:[
+  {c:"5821",n:"게임 소프트웨어 개발 및 공급업 (일반 게임)"},
+  {c:"5821 중",n:"도박·사행성·불건전 게임 소프트웨어 개발 및 공급업",x:"gamesw",vice:1},
+  {c:"5822",n:"시스템·응용 소프트웨어 개발 및 공급업"},
+  {c:"63992 중",n:"가상자산 매매 및 중개업",x:"crypto"},
+  {c:"63999 중",n:"온라인 게임 아이템 중개업",x:"crypto"},
+  {c:"581",n:"출판업"},
+  {c:"",n:"그 밖의 정보통신업"}],
+ mfg:[
+  {c:"10",n:"식료품 제조업"},
+  {c:"33409 중",n:"도박기계 및 사행성·불건전 오락기구 제조업",x:"gambledev",vice:1},
+  {c:"",n:"그 밖의 제조업"}],
+ build:[{c:"",n:"건설업 (종합·전문 공사업)"}],
+ trans:[
+  {c:"52991",n:"통관 대리 및 관련 서비스업",x:"customs"},
+  {c:"49",n:"육상 운송업 (화물·택배·택시 등)"},
+  {c:"",n:"그 밖의 운수·창고업"}],
+ farm:[{c:"",n:"농업, 임업 및 어업",farm:1}],
+ fin:[
+  {c:"64",n:"금융업",x:"fin"},
+  {c:"65",n:"보험 및 연금업",x:"fin"},
+  {c:"66",n:"금융 및 보험 관련 서비스업 (보험대리점 등)",x:"fin"}],
+ biz:[
+  {c:"741",n:"사업시설 유지·관리 서비스업 (청소·방제 등)"},
+  {c:"751",n:"고용 알선 및 인력 공급업"},
+  {c:"75330 중",n:"흥신소",x:"detect"},
+  {c:"75993",n:"신용조사 및 추심 대행업",x:"detect"},
+  {c:"75999 중",n:"경품용 상품권 발행 및 판매업",x:"voucher"},
+  {c:"76390 중",n:"사행성 오락기구 임대업",x:"gambledev",vice:1},
+  {c:"",n:"그 밖의 사업지원·임대 서비스업"}]
+};
+
+// ---------- 화면 채우기 ----------
+$("reg").innerHTML=SIDO.map(s=>`<option>${s}</option>`).join("");
+$("reg").value="대구";
+function fillSgg(keep){const L=SGG[$("reg").value];$("sggWrap").hidden=!L;$("sgg").innerHTML=(L||["-"]).map(s=>`<option>${s}</option>`).join("");if(keep&&L&&L.includes(keep))$("sgg").value=keep}
+fillSgg();
+$("ind").innerHTML=IND.map((d,i)=>`<option value="${i}">${esc(d.n)}</option>`).join("");
+function fillSub(keep){const L=SUB[IND[+$("ind").value].k];$("sub").innerHTML=L.map((u,i)=>`<option value="${i}">${u.c?`[${esc(u.c)}] `:""}${esc(u.n)}</option>`).join("");$("sub").value=keep&&L[keep]?keep:"0"}
+fillSub();
+$("reg").addEventListener("input",()=>fillSgg());
+$("ind").addEventListener("input",()=>{fillSub();showGrade()});
+
+const FIELDS=["reg","sgg","age","job","marital","kids","young","house","dis","ann","hh","preg","single","noBiz","ind","sub","rev","emp","yrs",
+  "woman","hire","hireYouth","staffUp","leave","drop","debtTrouble","credit","close"];
+function formToProfile(){const o={};for(const id of FIELDS){const el=$(id);o[id]=el.type==="checkbox"?el.checked:el.value}return o}
+function profileToForm(o){
+  for(const id of FIELDS){const el=$(id);if(o[id]===undefined)continue;if(el.type==="checkbox")el.checked=!!o[id];else if(id!=="sgg"&&id!=="sub")el.value=o[id]}
+  fillSgg(o.sgg);fillSub(o.sub);syncBiz();showGrade();showInc()}
+function loadProfile(){try{const s=localStorage.getItem(KEY);return s?JSON.parse(s):null}catch(e){return null}}
+function saveProfile(o){try{localStorage.setItem(KEY,JSON.stringify(o));return true}catch(e){return false}}
+let PROFILE=null;
+function syncBiz(){const off=$("noBiz").checked;$("bizFields").hidden=off;$("bizChecks").hidden=off}
+$("noBiz").addEventListener("input",syncBiz);
+
+// ---------- 소득: 기준 중위소득 % ----------
+let MEDIAN=[0,2564238,4199292,5359036,6494738,7556719,8555952],MEDIAN_YEAR=2026;
+const median=n=>n<=6?MEDIAN[n]:MEDIAN[6]+(MEDIAN[6]-MEDIAN[5])*(n-6);
+const autoHH=p=>1+((p.marital==="미혼"||p.single)?0:1)+(+p.kids||0);
+function incOf(p){const ann=p.ann===""?NaN:+p.ann,hv=p.hh===""?NaN:+p.hh,hh=isNaN(hv)||hv<1?autoHH(p):Math.round(hv);
+  if(isNaN(ann))return{pct:0,hh};return{pct:Math.max(1,Math.round(ann*10000/12/median(hh)*100)),hh}}
+function showInc(){const r=incOf(formToProfile());$("incHint").textContent=r.pct?`${r.hh}인 가구 · 중위소득 약 ${r.pct}% (${MEDIAN_YEAR}년 기준)`:"중위소득 %를 계산해요";$("hh").placeholder=`자동: ${autoHH(formToProfile())}명`}
+["ann","hh","marital","kids","single"].forEach(id=>$(id).addEventListener("input",showInc));
+
+// ---------- 사업장 규모 ----------
+function bizOf(p){
+  const d=IND[+p.ind]||IND[0],u=SUB[d.k][+p.sub]||SUB[d.k][0],rev=+p.rev||0,emp=Math.max(0,Math.floor(+p.emp||0));
+  const sme=rev<=d.mid*10000,small=rev<=d.small*10000,ss=small&&emp<d.ss;
+  return {d,u,rev,emp,sme,small,ss,grade:ss?"소상공인":small?"소기업":sme?"중기업":"중견 이상"};
+}
+function showGrade(){const b=bizOf(formToProfile());$("grade").textContent=`→ ${b.grade} (소기업 매출 ${b.d.small}억 이하 · 직원 ${b.d.ss}명 미만이면 소상공인)`}
+["rev","emp","sub"].forEach(id=>$(id).addEventListener("input",showGrade));
+
+// ================= 개인 지원 판정 (개인 보조금 사이트와 같은 규칙) =================
+// 결과 한 줄: [true|false|"?", 설명]
+const noHome=p=>p.house==="자가"?false:(p.house.startsWith("무주택 · 부모")?"?":true);
+const married=p=>p.marital==="신혼 (7년 이내)"||p.marital==="결혼 예정";
+const INC_LAB={JA0201:"50% 이하",JA0202:"51~75%",JA0203:"76~100%",JA0204:"101~200%",JA0205:"200% 초과"};
+const incCode=p=>p.inc===0?null:p.inc<=50?"JA0201":p.inc<=75?"JA0202":p.inc<=100?"JA0203":p.inc<=200?"JA0204":"JA0205";
+const G_LIFE=["JA0301","JA0302","JA0303"],G_JOB=["JA0313","JA0314","JA0315","JA0316","JA0317","JA0318","JA0319","JA0320","JA0326","JA0327"],G_SP=["JA0328","JA0329","JA0330"];
+const NAMES={JA0301:"예비부모·난임",JA0302:"임산부",JA0303:"출산·입양",JA0313:"농업인",JA0314:"어업인",JA0315:"축산업인",JA0316:"임업인",JA0317:"초등학생",JA0318:"중학생",JA0319:"고등학생",JA0320:"대학생",JA0326:"직장인",JA0327:"구직자·실업자",JA0328:"장애인",JA0329:"국가보훈대상자",JA0330:"질병·질환자",JA0401:"다문화가족",JA0402:"북한이탈주민",JA0403:"한부모·조손가정",JA0404:"1인 가구",JA0411:"다자녀 가구",JA0412:"무주택 세대",JA0413:"신규 전입",JA0414:"확대가족"};
+const lab=ks=>ks.map(k=>NAMES[k]).join(" · ")+" 대상";
+function grp(list,on,fn,openAll){const ks=list.filter(k=>on.has(k));if(!ks.length||(ks.length===list.length&&openAll))return null;const vs=ks.map(fn);
+  return[vs.includes(true)?true:(vs.includes("?")?"?":false),lab(ks)]}
+function gov24Test(it,p){const c=it.cond||{},on=new Set(c.on||[]),r=[];
+  const openAll=[G_LIFE,G_JOB,G_SP].filter(g=>g.every(k=>on.has(k))).length>=2||on.has("JA0322");
+  if((c.JA0110!=null||c.JA0111!=null)&&!((c.JA0110??0)<=0&&(c.JA0111??200)>=120)){const a0=c.JA0110??0,a1=c.JA0111??200;r.push([p.age>=a0&&p.age<=a1,a1>=120?`만 ${a0}세 이상`:`만 ${a0}~${a1}세`])}
+  const inc=Object.keys(INC_LAB).filter(k=>on.has(k));
+  if(inc.length&&inc.length<5){const my=incCode(p);r.push([my?inc.includes(my):"?","중위소득 "+inc.map(k=>INC_LAB[k]).join(", ")])}
+  const g1=grp(G_LIFE,on,k=>k==="JA0302"?p.preg:k==="JA0303"?(p.kids>=1&&p.young===0):(p.preg?true:(p.age>=19&&p.age<=49&&!p.single?"?":false)),openAll);if(g1)r.push(g1);
+  if(!on.has("JA0322")){const g2=grp(G_JOB,on,k=>k==="JA0326"?p.job==="재직":k==="JA0327"?p.job==="구직 중":["JA0317","JA0318","JA0319","JA0320"].includes(k)?(p.job==="학생"||(p.kids>=1&&p.young>=6&&p.young<=18)?"?":false):["JA0313","JA0314","JA0315","JA0316"].includes(k)?(p.job==="농업·어업"?true:false):"?",openAll);if(g2)r.push(g2)}
+  if(!on.has("JA0410")){const g3=grp(["JA0401","JA0402","JA0403","JA0404","JA0411","JA0412","JA0413","JA0414"],on,k=>k==="JA0403"?p.single:k==="JA0404"?p.hh===1:k==="JA0411"?p.kids>=2:k==="JA0412"?noHome(p):"?",openAll);if(g3)r.push(g3)}
+  const g4=(on.has("JA0410")||on.has("JA0322"))?null:grp(G_SP,on,k=>k==="JA0328"?!!p.dis:"?",openAll);if(g4)r.push(g4);
+  return r}
+const nz=s=>String(s||"").replace(/[\s·ㆍ.]/g,"");
+const LIFE_ALL=["영유아","아동","청소년","청년","중장년","노년","임신출산"];
+function stagesOf(p){const st=new Set(),a=p.age;st.add(a<6?"영유아":a<13?"아동":a<19?"청소년":a<35?"청년":a<65?"중장년":"노년");
+  if(p.kids>=1){const y=p.young;st.add(y<6?"영유아":y<13?"아동":y<19?"청소년":"청년")}if(p.preg||(p.kids>=1&&p.young===0))st.add("임신출산");return st}
+function bokTest(it,p){const r=[],life=String(it.life||"").split(",").map(nz).filter(Boolean),tg=String(it.who||"").split(",").map(nz).filter(Boolean);
+  if(life.length&&!LIFE_ALL.every(x=>life.includes(x)))r.push([life.some(x=>stagesOf(p).has(x)),`${it.life} 대상`]);
+  if(tg.length&&tg.length<6){const vs=tg.map(t=>/저소득/.test(t)?(p.inc===0?"?":p.inc<=60?true:p.inc<=100?"?":false):/장애/.test(t)?!!p.dis:/다자녀/.test(t)?p.kids>=2:/한부모|조손/.test(t)?p.single:"?");
+    r.push([vs.includes(true)?true:vs.includes("?")?"?":false,`${it.who} 대상`])}
+  if(it.inc&&p.inc)r.push([p.inc<=it.inc,`중위소득 ${it.inc}% 이하 (공고 문구)`]);
+  if(it.age&&it.age.length===2)r.push([p.age>=it.age[0]&&p.age<=it.age[1],`만 ${it.age[0]}~${it.age[1]}세 (공고 문구)`]);
+  return r}
+function youthTest(it,p){const y=it.y||{},r=[];
+  const a0=+y.sprtTrgtMinAge||0,a1=+y.sprtTrgtMaxAge||0;
+  // 온통청년: 연령제한여부 Y = 나이 제한 없음, N = 아래 나이만 (실제 자료로 확인)
+  if(y.sprtTrgtAgeLmtYn!=="Y"&&(a0||a1))r.push([p.age>=a0&&p.age<=(a1||200),a1?`만 ${a0}~${a1}세`:`만 ${a0}세 이상`]);
+  else if(/청년/.test(it.title||"")&&p.age>39)r.push(["?","청년 정책 (나이 제한 표시는 없음)"]);
+  else if(y.sprtTrgtAgeLmtYn!=="Y")r.push([p.age>=19&&p.age<=39?true:"?","청년 (보통 만 19~39세)"]);
+  const mx=+y.earnMaxAmt||0,ann=p.ann===""?NaN:+p.ann;
+  if(y.earnCndSeCd==="0043002")r.push([mx&&!isNaN(ann)?ann<=mx:"?",mx?`연소득 ${mx.toLocaleString()}만원 이하`:"소득 조건 있음"]);
+  else if(y.earnCndSeCd==="0043003")r.push(["?","소득 조건 있음 (공고 확인)"]);
+  if(y.addAplyQlfcCndCn)r.push(["?",y.addAplyQlfcCndCn.replace(/\s+/g," ").slice(0,90)+(y.addAplyQlfcCndCn.length>90?"…":"")]);
+  return r}
+function textConds(it,p){const nm=it.title||"",all=[nm,it.summary,it.target,it.content].join(" "),r=[];
+  const farm=/농기계|농지|영농|농업인|농가|귀농|청년농|스마트팜|어선|어업|어구|수산|양식|축산|한우|임업|산림|과수|농작물|농산물/.test(nm);
+  if(farm)r.push([p.job==="농업·어업"?true:(/귀농|귀어|귀촌/.test(nm)?"?":false),"농업·어업인 대상 (제목)"]);
+  if(/무주택/.test(all)||(!farm&&/(공공임대|매입임대|전세임대|임대주택|행복주택|임대보증금|주거비)/.test(nm)))r.push([noHome(p),"무주택자 대상"]);
+  else if(/(전세|월세|전월세|임차보증금|임차료)/.test(nm))r.push([p.house==="자가"?false:true,"전·월세 사는 사람 대상 (제목)"]);
+  if(/임산부|임신부/.test(nm))r.push([p.preg?true:(p.kids>=1&&p.young===0?"?":false),"임신 중 대상 (제목)"]);
+  if(/한부모|미혼모|미혼부|조손/.test(nm))r.push([!!p.single,"한부모·조손 가정 대상 (제목)"]);
+  if(/장애인|장애아|발달장애/.test(nm))r.push([!!p.dis,"장애인 대상 (제목)"]);
+  if(/다자녀|다둥이|셋째/.test(nm))r.push([p.kids>=2,"자녀 2명 이상 (제목)"]);
+  if(/어르신|노인|경로/.test(nm)&&!/청년|아동/.test(nm))r.push([p.age>=60?true:(p.age>=50?"?":false),"어르신 대상 (제목)"]);
+  if(/신혼/.test(nm))r.push([married(p)?true:"?","신혼부부 대상 (제목)"]);
+  if(/자립준비청년|보호종료/.test(nm))r.push([p.age<=24?"?":false,"보호가 끝난 자립준비청년 대상 (제목)"]);
+  if(/아동|영유아|어린이/.test(nm)&&!/부모|가정|가구|양육/.test(nm))r.push([p.kids>=1&&p.young<13?true:false,"아동·영유아 대상 (제목)"]);
+  if(/대학생|학생/.test(nm)&&!/학부모/.test(nm))r.push([p.job==="학생"?true:"?","학생 대상 (제목)"]);
+  return r}
+function judgePersonal(it,p){
+  const r=[];
+  if(it.reg&&it.reg!=="전국"){
+    if(p.reg!==it.reg)r.push([false,`${it.reg} 주민 대상 (나는 ${p.reg})`]);
+    else{const sg=(SGG[it.reg]||[]).find(g=>it.sgg&&String(it.sgg).startsWith(g));if(sg)r.push([p.sgg===sg,`${it.reg} ${sg} 주민 대상`]);else r.push([true,`${it.reg} 주민 대상`])}
+  }
+  if(it.src==="보조금24")r.push(...gov24Test(it,p));
+  else if(it.src==="온통청년")r.push(...youthTest(it,p));
+  else r.push(...bokTest(it,p));
+  r.push(...textConds(it,p));
+  // 같은 말이 여러 번 나오지 않게
+  const seen=new Set(),out=r.filter(x=>!seen.has(x[1])&&seen.add(x[1]));
+  if(!out.some(x=>x[0]!==true||!/주민 대상/.test(x[1])))out.push(["?","대상·선정기준이 글로만 나와 있어요. 공고 확인"]);
+  return out.map(([v,t])=>[v===true?"ok":v===false?"no":"chk",t]);
+}
+
+// ================= 사업자 공고 판정 (내 사업장 지원 찾기의 '단어 거르기'와 같은 규칙) =================
+const FIT_RULES=[
+ {re:/운영기관|수행기관|위탁기관|주관기관|운영사\s?(모집|선정)|운영\s?단체 모집/,test:()=>["no","사업을 맡아 운영할 기관을 뽑는 공고 (지원받는 공고 아님)"]},
+ {re:/소공인|의류제조|봉제|제조(업|기업|환경|마스터|업체|공동)|섬유(분야|제조)|주얼리|가구(디자인|창작|지원센터)|공산품|기계장비/,test:m=>m.k==="mfg"?["ok","제조업 대상"]:["no","제조업(소공인)만 대상"]},
+ {re:/음식점|외식업|먹거리골목|식품안심업소|위생등급|레시피/,test:m=>m.k==="food"?["ok","음식점 대상"]:["no","음식점·외식업만 대상"]},
+ {re:/식품진흥기금|식품(제조|기업)/,test:m=>["food","mfg"].includes(m.k)?["ok","식품 업종 대상"]:["no","식품 제조·음식점만 대상"]},
+ {re:/농업인|농업용|농가|어업(활동|인)|어업인|축산|가축분뇨|임업인/,test:m=>m.k==="farm"?["ok","농림어업 대상"]:["no","농업·어업인만 대상"]},
+ {re:/여행업|관광사업체|여행사/,test:m=>m.k==="biz"?["chk","여행업 등록 업체만"]:["no","여행업 등록 업체만 대상"]},
+ {re:/착한가격업소/,test:m=>["food","svc"].includes(m.k)?["ok","외식·개인서비스 대상"]:["chk","외식·이미용·세탁 등 서비스업 위주, 가격 심사 있음"]},
+ {re:/프랜차이즈|가맹\s?(본부|사업자|소상공인)|가맹점주/,test:()=>["chk","프랜차이즈 가맹점만"]},
+ {re:/전통시장|상점가|상인회|골목상점|상권 활성화|원도심/,test:()=>["chk","전통시장·상점가 안 점포만일 수 있음"]},
+ {re:/수출|해외(상표|바이어)/,test:()=>["chk","수출하거나 해외 판매할 제품이 있어야 함"]},
+ {re:/입점|기획전|특판|홈쇼핑|판로|라이브커머스|팝업스토어|박람회|면세장|동반성장몰|크라우드펀딩|소담스퀘어|디지털커머스/,test:()=>["chk","판매할 제품이 있는 업체 대상"]},
+ {re:/생활화학제품|어린이제품|생활용품/,test:m=>["mfg","retail"].includes(m.k)?["chk","해당 제품을 만들거나 파는 업체만"]:["no","생활용품 제조·판매 업체만 대상"]},
+ {re:/\(법인사업자\)|법인사업자 전용/,test:()=>["chk","법인사업자만 (개인사업자는 별도 공고)"]},
+ {re:/청년\s?(소상공인|창업|사업가|창업가|CEO|사장|기업)/,test:m=>m.youth?["ok","청년 대표 대상"]:["no","청년(만 39세 이하) 대표만"]},
+ {re:/청년\s?(일자리|일경험|채용|고용)|미취업청년/,test:m=>m.hireYouth?["ok","청년 채용 시 지원"]:["chk","청년을 채용할 때만"]},
+ {re:/여성\s?(기업|농업인|창업|CEO|대표)/,test:m=>m.woman?["ok","여성 대표 대상"]:["no","여성 대표만"]},
+ {re:/장애인\s?(기업|창업|대표|소상공인)/,test:m=>m.disabled?["ok","장애인 대표 대상"]:["no","장애인 대표만"]},
+ {re:/중장년/,test:m=>m.age>=40&&m.age<=64?["ok","중장년(40~64세) 대표 대상"]:["no","중장년(대개 40~64세) 대표만"]},
+ {re:/1인\s?(자영업자|소상공인|점포|사업자)/,test:m=>m.emp===0?["ok","1인 사업장 대상"]:["no","직원 없는 1인 사업장만"]},
+ {re:/폐업|사업정리|재기|희망리턴|새출발|휴ㆍ폐업|재창업/,test:m=>m.close?["ok","폐업·재기 지원"]:["no","폐업·재기 상황만"]},
+ {re:/저신용/,test:m=>m.credit?["chk","저신용만 (보통 744점 이하)"]:["no","저신용 소상공인만"]},
+ {re:/위기 소상공인|경영위기|위기대응/,test:m=>m.drop||m.debtTrouble?["ok","경영 위기 대상"]:["chk","매출 감소·연체 등 경영 위기만"]},
+ {re:/육아휴직|대체인력/,test:m=>m.leave?["ok","육아휴직 대상"]:["no","직원이 육아휴직을 쓸 때만"]},
+ {re:/출산|양육|아이보듬/,test:()=>["chk","대표(또는 배우자)가 출산했을 때만"]},
+ {re:/신규\s?채용|인건비|일자리\s?창출|고용창출/,test:m=>m.hire||m.staffUp?["ok","직원 채용 시 지원"]:["chk","직원을 새로 뽑을 때만"]},
+ {re:/인구감소지역/,test:()=>["chk","인구감소지역 사업장만"]},
+ {re:/이주직원|이전기업/,test:()=>["no","특정 이주·이전 대상자만"]},
+ {re:/유공|포상|표창/,test:()=>["chk","오래 운영했거나 공적이 있는 업체를 추천·심사"]},
+ {re:/생애\s?(첫|최초)\s?창업|최초 창업|창업\s?(임대료|응원금|지원금)|창업의 꿈|청년창업|창업 초기/,test:m=>m.yrs<=0?["ok","창업 초기 대상"]:m.yrs===1?["chk","창업 초기만 (보통 1~3년 이내)"]:["no","창업한 지 얼마 안 된 사업장만"]},
+];
+const FIT_POLICY=/소상공인 정책자금|소상공인시장진흥(공단 )?정책자금|경영안정 바우처|소상공인시장진흥자금/;
+const FIT_LOCALFUND=/정책자금|육성자금|경영안정자금|특례보증|이차보전|이자(차액|지원|비용)|융자/;
+function judgeBiz(it,p){
+  if(p.noBiz)return[["no","사업자등록이 있는 사업자 대상"]];
+  const b=bizOf(p),why=[],seen=new Set(),add=v=>{if(!seen.has(v[1])){seen.add(v[1]);why.push(v)}};
+  const m={k:b.d.k,ss:b.ss,sme:b.sme,grade:b.grade,emp:b.emp,yrs:+p.yrs,age:+p.age||0,youth:(+p.age||99)<=39,woman:p.woman,disabled:!!p.dis,
+    hire:p.hire,hireYouth:p.hireYouth,staffUp:p.staffUp,leave:p.leave,close:p.close,credit:p.credit,drop:p.drop,debtTrouble:p.debtTrouble,
+    x:b.u.x||"",xn:b.u.x?b.u.n.split(",")[0]:""};
+  let regs=it.regions||[];
+  if(!regs.length){ // [지역] 표시가 없어도 제목에 시·도 이름이 있으면 그 지역 공고로 봄
+    const FULL={서울특별시:"서울",부산광역시:"부산",대구광역시:"대구",인천광역시:"인천",광주광역시:"광주",대전광역시:"대전",울산광역시:"울산",세종특별자치시:"세종",경기도:"경기",강원특별자치도:"강원",충청북도:"충북",충청남도:"충남",전북특별자치도:"전북",전라남도:"전남",경상북도:"경북",경상남도:"경남",제주특별자치도:"제주"};
+    const t=String(it.title||"").replace(/^\s*\d{4}년\s*/,"");
+    const hit=Object.keys(FULL).find(k=>t.includes(k))||SIDO.find(k=>new RegExp("^"+k+"\\s|\\s"+k+"\\s").test(" "+t));
+    if(hit)regs=[FULL[hit]||hit];
+  }
+  it._place=regs.length?regs.join("·"):"전국";
+  if(regs.length)add(regs.includes(p.reg)?["ok",`${regs.join("·")} 지역 공고`]:["no",`${regs.join("·")} 지역 사업장만 (나는 ${p.reg})`]);
+  else add(["ok","전국 공고"]);
+  const head=[it.title,it.target].join(" ");
+  for(const r of FIT_RULES)if(r.re.test(head))add(r.test(m));
+  const SS=/소상공인|자영업|개인사업자|전통시장|상인회|상점가|점포/,SME=/중소기업|중소\s*[ㆍ·]|중기업|소기업|창업기업|벤처/;
+  const BIG=/중견기업|대기업/,PRE=/예비\s*(재)?창업/,EXIST=/기업|소상공인|사업자|업체|점포|\(예비\)/;
+  if(PRE.test(head)&&!EXIST.test(head.replace(PRE,"")))add(["no","사업자등록 전 예비창업자만 대상"]);
+  if(BIG.test(it.target||"")&&!SME.test(it.target||"")&&!SS.test(it.target||""))add(["no","중견·대기업 대상"]);
+  else if(SS.test(head)&&!SME.test(head))add(m.ss?["ok","소상공인 대상"]:["no",`소상공인만 대상 (나는 ${m.grade})`]);
+  else if(SME.test(head)&&!m.sme)add(["no",`중소기업만 대상 (나는 ${m.grade})`]);
+  if(m.x){
+    const inExcl=(it.excl||[]).some(w=>m.xn.includes(w)||w===m.xn||(m.x==="health"&&/보건|의료|의원|병원/.test(w))||(m.x==="pharm"&&/약국|보건/.test(w)));
+    if(inExcl)add(["no",`공고문 제외 업종에 ${m.xn} 포함`]);
+    else if(FIT_POLICY.test(head))add(["no",`${m.xn}은(는) 소진공 정책자금·바우처 제외 업종`]);
+    else if(FIT_LOCALFUND.test(head))add(["chk",it.hasExclList?`공고문 제외 업종 목록에서 ${m.xn}은 못 찾음, 한 번 더 확인`:`${m.xn}이(가) 제외 업종인지 공고문 확인`]);
+  }
+  if(why.length===1&&why[0][0]==="ok")add(["ok","업종·대상 제한 단어 없음"]);
+  return why;
+}
+
+// ---------- 종합 판정: 하나라도 안 맞으면 미해당, 확인할 게 있으면 애매, 다 맞으면 해당 ----------
+function verdict(it,p){
+  const p2={...p,age:+p.age||0,kids:+p.kids||0,young:p.young===""?99:+p.young,inc:incOf(p).pct,hh:incOf(p).hh};
+  const why=it.side==="biz"?judgeBiz(it,p):judgePersonal(it,p2);
+  const st=why.some(w=>w[0]==="no")?"no":why.some(w=>w[0]==="chk")?"chk":"ok";
+  // 미해당이면 안 맞는 이유를 맨 위로
+  const order={no:0,chk:1,ok:2};why.sort((a,b)=>order[a[0]]-order[b[0]]);
+  return{st,why};
+}
+
+// ---------- 화면 ----------
+let DATA=null,FILTER="all",SHOWN=PAGE;const OPEN=new Set();
+const today=()=>new Date(Date.now()+9*3600e3).toISOString().slice(0,10);
+function ddayOf(it){const t=today();
+  if(it.start&&it.start>t)return[`접수 예정 ${+it.start.slice(5,7)}/${+it.start.slice(8)}`,""];
+  if(!it.end)return null;const d=Math.round((new Date(it.end)-new Date(t))/864e5);return[d===0?"오늘 마감":`D-${d}`,d<=7?"soon":""]}
+const VTXT={ok:"✓ 해당",chk:"? 애매",no:"✕ 미해당"},MK={ok:"✓",chk:"?",no:"✕"};
+function card(it){
+  const v=it._v,url=safeUrl(it.url),dd=ddayOf(it),open=OPEN.has(it.id);
+  const money=it.amtText?`최대 ${it.amtText}`:it.loanText?`대출 한도 ${it.loanText}`:"";
+  const place=it.side==="biz"?(it._place||(it.regions&&it.regions.length?it.regions.join("·"):"전국")):(it.reg==="전국"?"전국":`${it.reg}${it.sgg?" "+it.sgg:""}`);
+  return `<article class="card v-${v.st}">
+    <div class="top"><span class="side ${it.side}">${it.side==="biz"?"사업자":"개인"}</span><span class="src">${esc(it.src)}</span>
+      <span class="date">${+it.date.slice(5,7)}/${+it.date.slice(8)} ${esc(it.dateKind)}</span><span class="verdict ${v.st}">${VTXT[v.st]}</span></div>
+    <h3>${url?`<a href="${esc(url)}" target="_blank" rel="noopener">${esc(it.title)}</a>`:esc(it.title)}</h3>
+    <div class="meta">${money?`<span class="amt">${esc(money)}</span>`:""}<span>${esc(place)}</span>${it.org?`<span>${esc(it.org)}</span>`:""}${dd?`<span class="dday ${dd[1]}">${esc(dd[0])}</span>`:""}</div>
+    <ul class="why">${v.why.slice(0,open?20:3).map(w=>`<li class="${w[0]}"><i>${MK[w[0]]}</i><span>${esc(w[1])}</span></li>`).join("")}</ul>
+    <button type="button" class="det" data-id="${esc(it.id)}" aria-expanded="${open}">${open?"접기 ▴":"자세히 ▾"}</button>
+    ${open?`<div class="body">
+      ${it.summary?`<div><b>내용</b>${esc(it.summary)}</div>`:""}
+      ${it.content?`<div><b>지원</b>${esc(it.content)}</div>`:""}
+      ${it.target||it.dtarget?`<div><b>대상</b>${esc(it.dtarget||it.target)}</div>`:""}
+      ${it.deadline?`<div><b>신청 기간</b>${esc(it.deadline)}</div>`:it.period?`<div><b>신청 기간</b>${esc(it.period)}</div>`:""}
+      ${url?`<div><a href="${esc(url)}" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">공고 원문 보기 ↗</a></div>`:""}
+    </div>`:""}
+  </article>`;
+}
+function render(){
+  if(!DATA)return;
+  const items=DATA.items.slice(0,LIMIT);
+  if(PROFILE)items.forEach(it=>it._v=verdict(it,PROFILE));
+  const cnt={all:items.length,ok:0,chk:0,no:0};if(PROFILE)items.forEach(it=>cnt[it._v.st]++);
+  const per=items.filter(it=>it.side==="per").length;
+  $("tabs").innerHTML=PROFILE?[["all","전체"],["ok","✓ 해당"],["chk","? 애매"],["no","✕ 미해당"]].map(([k,t])=>`<button type="button" class="tab" data-f="${k}" aria-pressed="${FILTER===k}">${t}<b>${cnt[k]}</b></button>`).join(""):"";
+  $("status").textContent=`최근 올라온 ${items.length}개 (개인 ${per} · 사업자 ${items.length-per}) · ${DATA.updated} 갱신`;
+  if(!PROFILE){$("list").innerHTML=`<p class="empty">위에서 내 조건을 넣고 <b>이 조건으로 고정</b>을 누르면 해당 여부를 보여줘요.</p>`;$("more").hidden=true;return}
+  const rows=FILTER==="all"?items:items.filter(it=>it._v.st===FILTER);
+  $("list").innerHTML=rows.length?rows.slice(0,SHOWN).map(card).join(""):`<p class="empty">이 칸에 해당하는 지원이 없어요.</p>`;
+  const left=rows.length-SHOWN;$("more").hidden=left<=0;$("more").textContent=`${Math.min(PAGE,left)}개 더 보기 (${left}개 남음)`;
+}
+function showMe(){
+  const p=PROFILE;if(!p){$("meBox").hidden=true;$("formBox").hidden=false;$("cancel").hidden=true;return}
+  const inc=incOf(p),b=bizOf(p),c=[];
+  c.push(`${p.reg}${SGG[p.reg]?" "+p.sgg:""}`);if(p.age)c.push(`만 ${p.age}세`);c.push(p.job);
+  c.push(p.marital.replace(/ \(.*\)/,""));if(+p.kids)c.push(`자녀 ${p.kids}명`);c.push(p.house);
+  if(inc.pct)c.push(`중위소득 ${inc.pct}%`);if(p.dis)c.push("장애");if(p.preg)c.push("임신 중");if(p.single)c.push("한부모");
+  if(p.noBiz)c.push("사업자 없음");else{c.push(b.u.n.split(",")[0]);c.push(b.grade);if(p.rev)c.push(`매출 ${won(+p.rev)}`);c.push(`직원 ${b.emp}명`)}
+  $("meChips").innerHTML=c.map(t=>`<span class="chip">${esc(t)}</span>`).join("");
+  $("meBox").hidden=false;$("formBox").hidden=true;
+}
+$("f").addEventListener("submit",e=>{e.preventDefault();PROFILE=formToProfile();saveProfile(PROFILE);SHOWN=PAGE;OPEN.clear();showMe();render();$("results").scrollIntoView({behavior:"smooth",block:"start"})});
+$("edit").addEventListener("click",()=>{profileToForm(PROFILE);$("formBox").hidden=false;$("meBox").hidden=true;$("cancel").hidden=false;$("formBox").scrollIntoView({behavior:"smooth"})});
+$("cancel").addEventListener("click",showMe);
+$("tabs").addEventListener("click",e=>{const b=e.target.closest("[data-f]");if(!b)return;FILTER=b.dataset.f;SHOWN=PAGE;render()});
+$("more").addEventListener("click",()=>{SHOWN+=PAGE;render()});
+$("list").addEventListener("click",e=>{const b=e.target.closest(".det");if(!b)return;const id=b.dataset.id;OPEN.has(id)?OPEN.delete(id):OPEN.add(id);render()});
+
+// ---------- 시작 ----------
+PROFILE=loadProfile();
+if(PROFILE)profileToForm(PROFILE);else{syncBiz();showGrade();showInc()}
+showMe();
+(async()=>{
+  try{
+    const r=await fetch("data/latest.json",{cache:"no-cache"});DATA=await r.json();
+    const y=String(new Date().getFullYear());const md=DATA.median||{};const yy=md[y]?y:Object.keys(md).sort().pop();
+    if(yy&&md[yy]){MEDIAN=[0,...md[yy]];MEDIAN_YEAR=+yy}
+  }catch(e){$("status").textContent="자료를 불러오지 못했어요. 잠시 뒤 새로고침해 주세요.";return}
+  try{ // 업종별 매출 기준은 구글 시트 값이 있으면 그걸 씀
+    const s=await (await fetch("business/data/sheet.json",{cache:"no-cache"})).json();
+    if(Array.isArray(s.ind))IND=IND.map(d=>{const x=s.ind.find(v=>v.k===d.k);return x?{...d,small:+x.small||d.small,mid:+x.mid||d.mid,ss:+x.ss||d.ss}:d});
+  }catch(e){}
+  showGrade();showInc();if(PROFILE)showMe();render();
+})();
+</script>
+</body>
+</html>

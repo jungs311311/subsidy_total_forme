@@ -115,6 +115,14 @@ def main():
             if not mirror_ok:
                 failures.append(source)
     (ROOT / "data").mkdir(exist_ok=True)
+    # 내 맞춤 화면(index.html)이 읽는 최신 30개 후보 파일
+    try:
+        subprocess.run([sys.executable, str(ROOT / "scripts" / "build_latest.py")], check=True, timeout=300)
+        status["sources"]["latest"] = {"ok": True}
+    except Exception as exc:
+        safe_log(f"build_latest failed: {type(exc).__name__}")
+        status["sources"]["latest"] = {"ok": False}
+        failures.append("latest")
     (ROOT / "data" / "sync-status.json").write_text(
         json.dumps(status, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
     )
