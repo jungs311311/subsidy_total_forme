@@ -95,6 +95,11 @@ select,input[type=number]{font:inherit;color:var(--ink);background:var(--paper);
 .body{font-size:13.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:8px;display:grid;gap:4px;overflow-wrap:anywhere}
 .body b{color:var(--ink);font-weight:600;margin-right:4px}
 .more{justify-self:center;margin-top:4px}
+.go{display:flex;flex-wrap:wrap;gap:6px}
+.go a{display:inline-flex;align-items:center;gap:4px;font-size:13.5px;font-weight:600;text-decoration:none;border-radius:8px;padding:6px 12px;border:1px solid var(--accent);color:var(--accent);background:var(--paper)}
+.go a.main{background:var(--accent);color:var(--paper)}
+.go a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.go .nolink{font-size:13px;color:var(--muted)}
 .empty{color:var(--muted);text-align:center;padding:24px 0}
 .note{font-size:12.5px;color:var(--muted);line-height:1.5}
 </style>
@@ -522,22 +527,25 @@ function ddayOf(it){const t=today();
   if(!it.end)return null;const d=Math.round((new Date(it.end)-new Date(t))/864e5);return[d===0?"오늘 마감":`D-${d}`,d<=7?"soon":""]}
 const VTXT={ok:"✓ 해당",chk:"? 애매",no:"✕ 미해당"},MK={ok:"✓",chk:"?",no:"✕"};
 function card(it){
-  const v=it._v,url=safeUrl(it.url),dd=ddayOf(it),open=OPEN.has(it.id);
+  const v=it._v,url=safeUrl(it.url),apply=safeUrl(it.applyUrl),dd=ddayOf(it),open=OPEN.has(it.id);
+  const host=u=>{try{return new URL(u).hostname.replace(/^www\./,"")}catch(e){return ""}};
+  const srcName={"기업마당":"기업마당","보조금24":"정부24","복지로":"복지로","복지로 지자체":"복지로","온통청년":"온통청년"}[it.src]||"공고";
+  const go=`<div class="go">${url?`<a class="main" href="${esc(url)}" rel="noopener">${esc(srcName)}에서 확인 ↗</a>`:""}${apply&&apply!==url?`<a href="${esc(apply)}" rel="noopener">신청 사이트 (${esc(host(apply))}) ↗</a>`:""}${!url&&!apply?`<span class="nolink">연결된 사이트 주소가 없어요</span>`:""}</div>`;
   const money=it.amtText?`최대 ${it.amtText}`:it.loanText?`대출 한도 ${it.loanText}`:"";
   const place=it.side==="biz"?(it._place||(it.regions&&it.regions.length?it.regions.join("·"):"전국")):(it.reg==="전국"?"전국":`${it.reg}${it.sgg?" "+it.sgg:""}`);
   return `<article class="card v-${v.st}">
     <div class="top"><span class="side ${it.side}">${it.side==="biz"?"사업자":"개인"}</span><span class="src">${esc(it.src)}</span>
       <span class="date">${+it.date.slice(5,7)}/${+it.date.slice(8)} ${esc(it.dateKind)}</span><span class="verdict ${v.st}">${VTXT[v.st]}</span></div>
-    <h3>${url?`<a href="${esc(url)}" target="_blank" rel="noopener">${esc(it.title)}</a>`:esc(it.title)}</h3>
+    <h3>${url?`<a href="${esc(url)}" rel="noopener">${esc(it.title)}</a>`:esc(it.title)}</h3>
     <div class="meta">${money?`<span class="amt">${esc(money)}</span>`:""}<span>${esc(place)}</span>${it.org?`<span>${esc(it.org)}</span>`:""}${dd?`<span class="dday ${dd[1]}">${esc(dd[0])}</span>`:""}</div>
     <ul class="why">${v.why.slice(0,open?20:3).map(w=>`<li class="${w[0]}"><i>${MK[w[0]]}</i><span>${esc(w[1])}</span></li>`).join("")}</ul>
+    ${go}
     <button type="button" class="det" data-id="${esc(it.id)}" aria-expanded="${open}">${open?"접기 ▴":"자세히 ▾"}</button>
     ${open?`<div class="body">
       ${it.summary?`<div><b>내용</b>${esc(it.summary)}</div>`:""}
       ${it.content?`<div><b>지원</b>${esc(it.content)}</div>`:""}
       ${it.target||it.dtarget?`<div><b>대상</b>${esc(it.dtarget||it.target)}</div>`:""}
       ${it.deadline?`<div><b>신청 기간</b>${esc(it.deadline)}</div>`:it.period?`<div><b>신청 기간</b>${esc(it.period)}</div>`:""}
-      ${url?`<div><a href="${esc(url)}" target="_blank" rel="noopener" style="color:var(--accent);font-weight:600">공고 원문 보기 ↗</a></div>`:""}
     </div>`:""}
   </article>`;
 }

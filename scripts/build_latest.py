@@ -49,6 +49,18 @@ def money(d):
     return out
 
 
+def link(u):
+    """'www.abc.kr' 처럼 https가 빠진 주소도 열리게 고친다."""
+    u = str(u or "").strip().split()[0] if str(u or "").strip() else ""
+    if not u:
+        return ""
+    if u.startswith("//"):
+        u = "https:" + u
+    elif not u.startswith(("http://", "https://")):
+        u = "https://" + u.lstrip("/")
+    return u if re.match(r"https?://[\w.-]+\.[a-z가-힣]{2,}", u, re.I) else ""
+
+
 def clip(text, n=400):
     text = re.sub(r"\s+", " ", str(text or "")).strip()
     return text[:n]
@@ -72,7 +84,7 @@ def main():
         biz.append({
             "side": "biz", "src": "기업마당", "id": it["id"], "title": it.get("title", ""),
             "org": it.get("execOrg") or it.get("org") or "", "date": it["created"], "dateKind": "올라옴",
-            "url": it.get("url", ""), "start": it.get("start"), "end": it.get("end"), "period": it.get("period", ""),
+            "url": link(it.get("url")), "applyUrl": link(it.get("applyUrl")), "start": it.get("start"), "end": it.get("end"), "period": it.get("period", ""),
             "regions": regions, "target": it.get("target", ""), "summary": clip(it.get("summary")),
             "tags": (it.get("tags") or [])[:12], **money(bdet.get(it["id"])),
         })
@@ -102,8 +114,9 @@ def main():
             "side": "per", "src": "온통청년", "id": "y:" + str(it.get("plcyNo")), "title": it.get("plcyNm", ""),
             "org": it.get("sprvsnInstCdNm") or it.get("operInstCdNm") or "", "date": ymd(str(it.get("plcyNo", ""))[:8]),
             "dateKind": "올라옴", "end": end or None, "reg": it.get("reg", "전국"), "sgg": it.get("sgg", ""),
-            "url": it.get("aplyUrlAddr") or it.get("refUrlAddr1") or
-                   f"https://www.youthcenter.go.kr/youthPolicy/ythPlcyTotalSearch/ythPlcyDetail/{it.get('plcyNo')}",
+            # 공고 원문은 온통청년 상세 페이지, 신청은 기관 사이트
+            "url": f"https://www.youthcenter.go.kr/youthPolicy/ythPlcyTotalSearch/ythPlcyDetail/{it.get('plcyNo')}",
+            "applyUrl": link(it.get("aplyUrlAddr")) or link(it.get("refUrlAddr1")),
             "summary": clip(it.get("plcyExplnCn")), "content": clip(it.get("plcySprtCn"), 300),
             "y": {k: it.get(k) for k in ("sprtTrgtMinAge", "sprtTrgtMaxAge", "sprtTrgtAgeLmtYn", "earnCndSeCd",
                                          "earnMaxAmt", "addAplyQlfcCndCn") if it.get(k)},
@@ -114,7 +127,7 @@ def main():
         add({
             "side": "per", "src": "보조금24", "id": "g:" + str(it.get("id")), "title": it.get("name", ""),
             "org": it.get("org", ""), "date": posted or modified, "dateKind": "올라옴" if posted else "수정",
-            "reg": it.get("reg", "전국"), "sgg": it.get("sgg", ""), "url": it.get("url", ""),
+            "reg": it.get("reg", "전국"), "sgg": it.get("sgg", ""), "url": link(it.get("url")),
             "summary": clip(it.get("summary")), "content": clip(it.get("content"), 300),
             "target": clip(it.get("target"), 300), "deadline": clip(it.get("deadline"), 120), "cond": it.get("cond") or {},
             **money(pdet.get("g:" + str(it.get("id")))),
@@ -123,7 +136,7 @@ def main():
         add({
             "side": "per", "src": "복지로", "id": "b:" + str(it.get("servId")), "title": it.get("servNm", ""),
             "org": " ".join(x for x in (it.get("jurMnofNm"), it.get("jurOrgNm")) if x), "date": ymd(it.get("svcfrstRegTs")),
-            "dateKind": "올라옴", "reg": "전국", "sgg": "", "url": it.get("servDtlLink", ""), "summary": clip(it.get("servDgst")),
+            "dateKind": "올라옴", "reg": "전국", "sgg": "", "url": link(it.get("servDtlLink")), "summary": clip(it.get("servDgst")),
             "life": it.get("lifeArray", ""), "who": it.get("trgterIndvdlArray", ""),
             **money(pdet.get("b:" + str(it.get("servId")))),
         })
@@ -135,7 +148,7 @@ def main():
         add({
             "side": "per", "src": "복지로 지자체", "id": "l:" + str(it.get("servId")), "title": it.get("servNm", ""),
             "org": " ".join(x for x in (ct, it.get("sggNm"), it.get("bizChrDeptNm")) if x), "date": ymd(it.get("lastModYmd")),
-            "dateKind": "수정", "reg": reg, "sgg": it.get("sggNm", ""), "url": it.get("servDtlLink", ""),
+            "dateKind": "수정", "reg": reg, "sgg": it.get("sggNm", ""), "url": link(it.get("servDtlLink")),
             "summary": clip(it.get("servDgst")), "life": it.get("lifeNmArray", ""), "who": it.get("trgterIndvdlNmArray", ""),
             **money(pdet.get("l:" + str(it.get("servId")))),
         })
