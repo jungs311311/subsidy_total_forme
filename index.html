@@ -58,6 +58,12 @@ select,input[type=number]{font:inherit;color:var(--ink);background:var(--paper);
 .tab[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .tab b{font-family:var(--f-num);font-weight:500;margin-left:4px}
 .status{font-size:13px;color:var(--muted)}
+.sides{display:grid;grid-template-columns:1fr 1fr;border-bottom:2px solid var(--line)}
+.stab{font:inherit;font-size:16px;font-weight:600;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:10px 6px;color:var(--muted);cursor:pointer}
+.stab[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent)}
+.stab[data-s=biz][aria-selected=true]{border-bottom-color:var(--biz)}
+.stab small{font-family:var(--f-num);font-size:12.5px;font-weight:500;margin-left:6px;color:var(--muted)}
+.stab:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
 /* 카드 */
 .list{display:grid;gap:10px}
 .card{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--line);border-radius:10px;padding:12px 14px;display:grid;gap:6px;min-width:0}
@@ -98,7 +104,7 @@ select,input[type=number]{font:inherit;color:var(--ink);background:var(--paper);
 <header>
   <span class="stamp">FOR ME · 최신 30</span>
   <h1>나에게 맞는 최신 지원</h1>
-  <p>개인 보조금과 사업자 지원을 합쳐서 가장 최근에 올라온 30개를 보여줘요. 내 조건으로 <b>해당 · 애매 · 미해당</b>을 나눠요. 해당하지 않는 것도 이유와 함께 보여줘요.</p>
+  <p>개인 지원과 사업자 지원을 탭으로 나눠, 탭마다 가장 최근에 올라온 30개를 보여줘요. 내 조건으로 <b>해당 · 애매 · 미해당</b>을 나눠요. 해당하지 않는 것도 이유와 함께 보여줘요.</p>
 </header>
 
 <section class="box me" id="meBox" hidden>
@@ -162,6 +168,10 @@ select,input[type=number]{font:inherit;color:var(--ink);background:var(--paper);
 </section>
 
 <section id="results" class="wrap" style="gap:12px">
+  <div class="sides" id="sides" role="tablist" aria-label="개인·사업자">
+    <button type="button" class="stab" role="tab" data-s="per" aria-selected="true">개인 지원</button>
+    <button type="button" class="stab" role="tab" data-s="biz" aria-selected="false">사업자 지원</button>
+  </div>
   <div class="tabs" id="tabs" role="group" aria-label="판정으로 거르기"></div>
   <div class="status" id="status">불러오는 중…</div>
   <div class="list" id="list" aria-live="polite"></div>
@@ -504,7 +514,8 @@ function verdict(it,p){
 }
 
 // ---------- 화면 ----------
-let DATA=null,FILTER="all",SHOWN=PAGE;const OPEN=new Set();
+let DATA=null,FILTER="all",SHOWN=PAGE,SIDE="per";
+try{const v=localStorage.getItem("forme.side");if(v==="biz"||v==="per")SIDE=v}catch(e){}const OPEN=new Set();
 const today=()=>new Date(Date.now()+9*3600e3).toISOString().slice(0,10);
 function ddayOf(it){const t=today();
   if(it.start&&it.start>t)return[`접수 예정 ${+it.start.slice(5,7)}/${+it.start.slice(8)}`,""];
@@ -532,12 +543,14 @@ function card(it){
 }
 function render(){
   if(!DATA)return;
-  const items=DATA.items.slice(0,LIMIT);
+  const pick=s=>DATA.items.filter(it=>it.side===s).slice(0,LIMIT);
+  const both={per:pick("per"),biz:pick("biz")},items=both[SIDE];
   if(PROFILE)items.forEach(it=>it._v=verdict(it,PROFILE));
   const cnt={all:items.length,ok:0,chk:0,no:0};if(PROFILE)items.forEach(it=>cnt[it._v.st]++);
-  const per=items.filter(it=>it.side==="per").length;
+  document.querySelectorAll(".stab").forEach(b=>{const k=b.dataset.s,okN=PROFILE?both[k].filter(it=>(it._v=verdict(it,PROFILE)).st==="ok").length:null;
+    b.setAttribute("aria-selected",String(k===SIDE));b.innerHTML=`${k==="per"?"개인 지원":"사업자 지원"}<small>${okN===null?both[k].length+"개":"해당 "+okN}</small>`});
   $("tabs").innerHTML=PROFILE?[["all","전체"],["ok","✓ 해당"],["chk","? 애매"],["no","✕ 미해당"]].map(([k,t])=>`<button type="button" class="tab" data-f="${k}" aria-pressed="${FILTER===k}">${t}<b>${cnt[k]}</b></button>`).join(""):"";
-  $("status").textContent=`최근 올라온 ${items.length}개 (개인 ${per} · 사업자 ${items.length-per}) · ${DATA.updated} 갱신`;
+  $("status").textContent=`${SIDE==="per"?"개인 지원":"사업자 지원"} 중 최근 올라온 ${items.length}개 · 자료 ${DATA.updated} 기준`;
   if(!PROFILE){$("list").innerHTML=`<p class="empty">위에서 내 조건을 넣고 <b>이 조건으로 고정</b>을 누르면 해당 여부를 보여줘요.</p>`;$("more").hidden=true;return}
   const rows=FILTER==="all"?items:items.filter(it=>it._v.st===FILTER);
   $("list").innerHTML=rows.length?rows.slice(0,SHOWN).map(card).join(""):`<p class="empty">이 칸에 해당하는 지원이 없어요.</p>`;
@@ -557,6 +570,7 @@ $("f").addEventListener("submit",e=>{e.preventDefault();PROFILE=formToProfile();
 $("edit").addEventListener("click",()=>{profileToForm(PROFILE);$("formBox").hidden=false;$("meBox").hidden=true;$("cancel").hidden=false;$("formBox").scrollIntoView({behavior:"smooth"})});
 $("cancel").addEventListener("click",showMe);
 $("tabs").addEventListener("click",e=>{const b=e.target.closest("[data-f]");if(!b)return;FILTER=b.dataset.f;SHOWN=PAGE;render()});
+$("sides").addEventListener("click",e=>{const b=e.target.closest("[data-s]");if(!b||b.dataset.s===SIDE)return;SIDE=b.dataset.s;FILTER="all";SHOWN=PAGE;OPEN.clear();try{localStorage.setItem("forme.side",SIDE)}catch(e){}render()});
 $("more").addEventListener("click",()=>{SHOWN+=PAGE;render()});
 $("list").addEventListener("click",e=>{const b=e.target.closest(".det");if(!b)return;const id=b.dataset.id;OPEN.has(id)?OPEN.delete(id):OPEN.add(id);render()});
 
