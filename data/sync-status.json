@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-11-18T03:44:47.693573+00:00",
+  "checked_at": "2026-11-19T03:42:12.993122+00:00",
   "mode": "auto",
   "sources": {
     "business_sheet": {
@@ -24,7 +24,8 @@
     },
     "youth": {
       "ok": true,
-      "method": "api"
+      "method": "mirror",
+      "reason": "api_failed"
     },
     "latest": {
       "ok": true
