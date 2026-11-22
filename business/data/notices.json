@@ -1,8 +1,8 @@
 {
- "updatedAt": "2026-11-21T12:29+09:00",
+ "updatedAt": "2026-11-22T11:38+09:00",
  "source": "기업마당(bizinfo.go.kr) 지원사업정보 API",
- "fetched": 1303,
- "count": 1245,
+ "fetched": 1295,
+ "count": 1237,
  "items": [
   {
    "id": "PBLN_000000000127930",
@@ -17277,39 +17277,6 @@
    "forSmall": false
   },
   {
-   "id": "PBLN_000000000124193",
-   "title": "[강원] 속초시 2026년 2차 전시박람회 참가 지원사업 참가기업 추가 모집 공고",
-   "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000124193",
-   "applyUrl": "",
-   "org": "강원특별자치도",
-   "execOrg": "강원특별자치도경제진흥원",
-   "target": "중소기업",
-   "field": "내수",
-   "summary": "속초시 관내 중소기업의 제품 홍보 및 판로 확대를 위하여 추진하는「2026년 속초시 전시박람회 참가 지원사업」의 참가기업을 아래와 같이 추가 모집하오니 많은 신청 바랍니다. ☞ 속초시 소재 중소 제조기업 ☞ 부스임차료 및 장치비, 비품 임차료(냉장쇼케이스, 진열대 등) 지원",
-   "period": "예산 소진시까지",
-   "start": null,
-   "end": null,
-   "regions": [
-    "강원"
-   ],
-   "tags": [
-    "내수",
-    "2026",
-    "강원특별자치도경제진흥원",
-    "강원특별자치도",
-    "임차료",
-    "부스임차료",
-    "속초시",
-    "전시박람회",
-    "장치비",
-    "홍보",
-    "중소기업",
-    "제조업"
-   ],
-   "created": "2026-07-09",
-   "forSmall": false
-  },
-  {
    "id": "PBLN_000000000117621",
    "title": "[강원] 속초시 2026년 소상공인 특례보증 수수료 지원 사업 공고",
    "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000117621",
@@ -18688,39 +18655,6 @@
     "기술애로"
    ],
    "created": "2026-02-10",
-   "forSmall": false
-  },
-  {
-   "id": "PBLN_000000000125898",
-   "title": "[경기] 2026년 기술보호 전문교육 및 산업보안 컨설팅 지원 참여기업(기관) 모집 공고",
-   "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000125898",
-   "applyUrl": "",
-   "org": "경기도",
-   "execOrg": "경기테크노파크",
-   "target": "중소기업",
-   "field": "경영",
-   "summary": "경기도와 (재)경기테크노파크에서 경기도 내 우수기술개발 확보를 위하여 노력하는 중소기업 및 연구개발 기관 등을 대상으로 기술보호 강화 전문교육 및 기술유출 피해 예방을 위한 산업보안 컨설팅 지원사업을 아래와 같이 안내하오니, 많은 관심과 참여 바랍니다. ☞ 경기도 내 연구개발을 수행하는 중소기업, 연구개발기관, 대학 등 - 본사 또는 연구기관이 경기도 소재인 기업(기관) ☞ 기술보호 전문교육…",
-   "period": "예산 소진시까지",
-   "start": null,
-   "end": null,
-   "regions": [
-    "경기"
-   ],
-   "tags": [
-    "경영",
-    "2026",
-    "피해예방",
-    "산업보안",
-    "피드백",
-    "전문교육",
-    "기술보호",
-    "경기테크노파크",
-    "경기도",
-    "컨설팅",
-    "지식재산",
-    "중소기업"
-   ],
-   "created": "2026-08-28",
    "forSmall": false
   },
   {
@@ -22951,72 +22885,6 @@
    "forSmall": false
   },
   {
-   "id": "PBLN_000000000118864",
-   "title": "[경남] 진주시 2026년 해외지사화 지원사업 참여업체 모집 공고",
-   "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000118864",
-   "applyUrl": "https://www.gyeongnam.go.kr/trade/index.gyeong?menuCd=DOM_000009102001001000&busi_support_cd=2977&pageNo=1&search_type=BUSI_SUPPORT_NM",
-   "org": "경상남도",
-   "execOrg": "KOTRA경남지원본부",
-   "target": "중소기업",
-   "field": "수출",
-   "summary": "관내 수출 중소기업의 해외시장개척능력 및 수출 활성화에 기여하고자「2026년 진주시 해외지사화 지원사업」을 아래와 같이 추가 모집 공고 합니다. ☞ 진주시 소재 수출 희망 중소기업 ☞ 수출성약, 전시 상담회 참가, 물류통관 자문, 출장, 기존 거래선 관리, 인허가 취득, 브랜드 홍보, 현지 법인설립 지원 - 기업별 300만원 한도, 1개사 1개 해외무역관 지원",
-   "period": "예산 소진시까지",
-   "start": null,
-   "end": null,
-   "regions": [
-    "경남"
-   ],
-   "tags": [
-    "수출",
-    "기존거래선",
-    "2026",
-    "KOTRA경남지원본부",
-    "물류통관",
-    "수출희망중소기업",
-    "브랜드홍보",
-    "해외무역관",
-    "수출성약",
-    "출장",
-    "진주시",
-    "전시상담회"
-   ],
-   "created": "2026-02-25",
-   "forSmall": false
-  },
-  {
-   "id": "PBLN_000000000122664",
-   "title": "[경남] 진주시 2026년 해외지사화 지원사업 추가모집 공고",
-   "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000122664",
-   "applyUrl": "https://www.gyeongnam.go.kr/trade/index.gyeong?menuCd=DOM_000009102001001000&busi_support_cd=2977&pageNo=1&search_type=BUSI_SUPPORT_NM",
-   "org": "경상남도",
-   "execOrg": "KOTRA경남지원본부",
-   "target": "중소기업",
-   "field": "수출",
-   "summary": "관내 수출 중소기업의 해외시장개척능력 및 수출 활성화에 기여하고자「2026년 진주시 해외지사화 지원사업」을 아래와 같이 추가 모집 공고 합니다. ☞ 진주시 소재 수출 희망 중소기업 중 KOTRA 지사화사업(발전단계 1년) 선정기업 ☞ '발전단계 1년' 참가비 (기업별 300만원 한도) 지원 - 수출성약 지원, 전시 상담회 참가 지원, 물류통관 자문, 출장 지원, 기존 거래선 관리, 인허가 취…",
-   "period": "예산 소진시까지",
-   "start": null,
-   "end": null,
-   "regions": [
-    "경남"
-   ],
-   "tags": [
-    "수출",
-    "경영",
-    "2026",
-    "지사화사업",
-    "진주시",
-    "해외지사화",
-    "경상남도",
-    "시장개척",
-    "KOTRA",
-    "KOTRA경남지원본부",
-    "중소기업",
-    "수출희망중소기업"
-   ],
-   "created": "2026-06-01",
-   "forSmall": false
-  },
-  {
    "id": "PBLN_000000000125738",
    "title": "[경남] 창녕군 2026년 3차 중소기업 근로자 기숙사 임차료 지원사업 시행 공고",
    "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000125738",
@@ -23931,39 +23799,6 @@
    "forSmall": false
   },
   {
-   "id": "PBLN_000000000122828",
-   "title": "[경북] 2026년 경북세일페스타 온라인 기획전 참여업체 모집 변경 공고",
-   "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000122828",
-   "applyUrl": "",
-   "org": "경상북도",
-   "execOrg": "경상북도경제진흥원",
-   "target": "중소기업",
-   "field": "내수",
-   "summary": "경상북도와 경상북도경제진흥원은 지역 중소기업ㆍ소상공인 제품의 범국민 소비촉진을 통한 소비심리 안정과 지역경제 성장을 위해 다음과 같이 온라인 기획전을 추진하오니 많은 관심과 신청을 바랍니다. ☞ 전년도 매출액 120억원 미만인 도내 소재(사업자등록증 상) 중소기업ㆍ소상공인 - 경상북도 내 사업장을 두고 있는 중소기업 및 소상공인 - 중소기업 또는 소상공인 확인서 보유 업체 ※ 자세한 지원대상…",
-   "period": "모집 완료시까지",
-   "start": null,
-   "end": null,
-   "regions": [
-    "경북"
-   ],
-   "tags": [
-    "내수",
-    "경영",
-    "현대이지웰",
-    "온라인 기획전",
-    "2026",
-    "오아시스",
-    "우체국쇼핑",
-    "지마켓",
-    "롯데온",
-    "할인쿠폰",
-    "유통채널",
-    "공영홈쇼핑"
-   ],
-   "created": "2026-06-05",
-   "forSmall": true
-  },
-  {
    "id": "PBLN_000000000117336",
    "title": "[경북] 2026년 고령군 국내ㆍ외 단체 관광객 유치 여행사(기관) 인센티브 지원 공고",
    "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000117336",
@@ -24189,39 +24024,6 @@
     "경상북도"
    ],
    "created": "2026-01-06",
-   "forSmall": false
-  },
-  {
-   "id": "PBLN_000000000119154",
-   "title": "[경북] 2026년 블루바이오기업 연구개발 및 산업화 지원사업(마케팅지원) 변경 모집 공고",
-   "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000119154",
-   "applyUrl": "https://ptp.or.kr/main/board/view.do?menu_idx=116&manage_idx=15&board_idx=7680&old_menu_idx=0&old_manage_idx=0&old_board_idx=0&group_depth=0&parent_idx=0&group_idx=0&group_ord=0&search.category1=&search_type=title%2Bcontent&search_text=&memo1=&memo2=&bid_search=&_code_id_arr=on&order_name=add_date&order_type=DESC&rowCount=10&dtl_opt_view=false&viewPage=1",
-   "org": "경상북도",
-   "execOrg": "포항테크노파크",
-   "target": "중소기업",
-   "field": "내수",
-   "summary": "「경상북도 해양바이오산업 육성 및 지원에 관한 조례」에 따라 지역 블루바이오산업의 기술고도화 및 성장지원을 촉진하기 위한 「블루바이오기업 연구개발 및 산업화 지원사업」을 다음과 같이 안내해 드립니다. ☞ 접수 마감일 기준, 사업자등록증상 경북 도 內 본사ㆍ연구소ㆍ공장 보유기업 ※ 공동 연구ㆍ개발 기관의 경우, 접수 마감일 기준 사업자등록증 상 경북도 內 본사ㆍ연구소ㆍ공장을 보유한 기관으로 함…",
-   "period": "상시 접수",
-   "start": null,
-   "end": null,
-   "regions": [
-    "경북"
-   ],
-   "tags": [
-    "수출",
-    "내수",
-    "블루바이오산업",
-    "블루바이오기업",
-    "2026",
-    "포항테크노파크",
-    "경상북도",
-    "마케팅",
-    "부스임차료",
-    "장치비",
-    "홍보비",
-    "통역"
-   ],
-   "created": "2026-03-05",
    "forSmall": false
   },
   {
@@ -28909,39 +28711,6 @@
    ],
    "created": "2026-05-13",
    "forSmall": true
-  },
-  {
-   "id": "PBLN_000000000122227",
-   "title": "[부산] 2026년 수출입 애로 중소기업 바우처 지원사업 공고",
-   "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000122227",
-   "applyUrl": "https://trade.bepa.kr/support/responsiveness/info?seq=1495",
-   "org": "부산광역시",
-   "execOrg": "부산경제진흥원",
-   "target": "중소기업",
-   "field": "수출",
-   "summary": "원자재 수입에 애로를 겪은 기업을 포함하여 수출입에 어려움을 겪고 있는 부산지역 중소기업을 위하여 기업 위기 극복 및 수출 경쟁력 강화를 목적으로 “2026수출입 애로 중소기업 바우처 지원사업”참가기업을 모집합니다. 참가를 희망하는 기업 관계자께서는 아래 내용을 참조하시어 정해진 기한 내 신청하시기 바랍니다. ☞ 아래의 자격 중 한 가지에 해당되는 부산 소재 중소기업 ① 부산소재의 수출입 중…",
-   "period": "예산 소진시까지",
-   "start": null,
-   "end": null,
-   "regions": [
-    "부산"
-   ],
-   "tags": [
-    "수출",
-    "원자재 수입",
-    "수출 경쟁력 강화",
-    "홍보 마케팅",
-    "2026",
-    "해외규격",
-    "국제운송",
-    "탄소중립",
-    "수출입",
-    "관세",
-    "부산경제진흥원",
-    "부산광역시"
-   ],
-   "created": "2026-05-20",
-   "forSmall": false
   },
   {
    "id": "PBLN_000000000126822",
@@ -35028,38 +34797,6 @@
     "AI활용"
    ],
    "created": "2026-07-08",
-   "forSmall": false
-  },
-  {
-   "id": "PBLN_000000000127526",
-   "title": "[전남광주] 여수시 2026년 농어촌민박 소방안전시설 지원 사업 모집 공고",
-   "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000127526",
-   "applyUrl": "",
-   "org": "전남광주통합특별시",
-   "execOrg": "기초자치단체",
-   "target": "중소기업",
-   "field": "경영",
-   "summary": "「전라남도 농어촌민박업 지원조례」제6조(재정지원) 규정에 의거 농어촌민박업소의 쾌적하고 안전한 여가 공간을 마련하여 방문객 편의 제공 및 농어촌관광 활성화를 도모하고자 소방안전시설 지원 사업에 참여할 농어촌민박업소를 다음과 같이 모집 공고합니다. ☞ 관내 농어촌민박사업장 ☞ 개소당 최고 1,000천원 지원 - (기본시설) 소화기(투척소화기 포함), 단독경보형감지기, 휴대용 비상조명등, 피난유…",
-   "period": "예산 소진시까지",
-   "start": null,
-   "end": null,
-   "regions": [
-    "광주",
-    "전남"
-   ],
-   "tags": [
-    "경영",
-    "전남광주",
-    "농어촌민박사업장",
-    "전남광주통합특별시",
-    "2026",
-    "소방안전시설",
-    "농어촌민박",
-    "안전시설",
-    "여수시",
-    "기초자치단체"
-   ],
-   "created": "2026-10-28",
    "forSmall": false
   },
   {
