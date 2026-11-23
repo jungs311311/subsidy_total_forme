@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-10-26 09:29",
+ "updatedAt": "2026-11-23 11:55",
  "source": "https://docs.google.com/spreadsheets/d/13crp7Mxc9zroQjgtSpVjeMvLAGd87dPfCFFQY2ZevDY",
  "programs": [
   {
@@ -1125,6 +1125,30 @@
    "show": "Y",
    "checked": "2026-10-26",
    "basis": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000118362"
+  },
+  {
+   "name": "농촌창업 경진대회",
+   "org": "농림축산식품부",
+   "cat": "받는 돈",
+   "tag": "경쟁 선발",
+   "amt": "장관상·상금 + 농촌창업 도약+ 프로그램 + 지방정부 연계 사업화 자금 최대 1억원",
+   "when": "2026년 11월 13일~12월 10일 접수 (2027년 대회)",
+   "about": "농촌 자원을 활용해 창업하려는 예비창업자와 업력 7년 이내 창업자를 뽑아요. 서면·현장·발표 심사로 15팀 내외를 뽑고, 시제품 제작실 무상 이용과 판로 입점도 지원해요.",
+   "url": "https://www.xn--289a74g35ad77bgsep7dntbbx5b.com",
+   "ageMin": null,
+   "ageMax": null,
+   "fields": [
+    "농업",
+    "음식",
+    "생활"
+   ],
+   "noFields": [],
+   "must": "",
+   "extra": "농촌에 기반을 두고 농촌의 유·무형 자원을 활용하는 사업인지",
+   "match": "농촌창업경진대회",
+   "show": "Y",
+   "checked": "2026-11-23",
+   "basis": "https://www.korea.kr/briefing/pressReleaseView.do?newsId=156788887 (농식품부 보도자료 2026.11.12)"
   }
  ],
  "warnings": []

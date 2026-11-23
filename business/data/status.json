@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-22T11:23+09:00",
+ "updatedAt": "2026-11-23T11:55+09:00",
  "programs": {
   "소상공인 경영안정 바우처": {
    "kind": "notice",
@@ -890,6 +890,22 @@
   "K-푸드 창업사관학교": {
    "kind": "notice",
    "national": [],
+   "local": []
+  },
+  "농촌창업 경진대회": {
+   "kind": "notice",
+   "national": [
+    {
+     "id": "PBLN_000000000127906",
+     "title": "2027년 농촌창업 경진대회 참여자 모집 공고",
+     "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000127906",
+     "org": "농림축산식품부",
+     "start": "2026-11-13",
+     "end": "2026-12-10",
+     "period": "2026-11-13 ~ 2026-12-10",
+     "regions": []
+    }
+   ],
    "local": []
   }
  }
