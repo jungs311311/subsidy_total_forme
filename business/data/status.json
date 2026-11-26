@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-25T13:57+09:00",
+ "updatedAt": "2026-11-26T13:13+09:00",
  "programs": {
   "소상공인 경영안정 바우처": {
    "kind": "notice",
@@ -742,16 +742,6 @@
    "kind": "notice",
    "national": [
     {
-     "id": "PBLN_000000000127994",
-     "title": "2026년 3차 장애인기업 국내ㆍ외 전시회참가 지원사업 참여기업 모집 공고",
-     "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000127994",
-     "org": "중소벤처기업부",
-     "start": "2026-11-17",
-     "end": "2026-11-25",
-     "period": "2026-11-17 ~ 2026-11-25",
-     "regions": []
-    },
-    {
      "id": "PBLN_000000000120282",
      "title": "2026년 장애인기업 공공판로(공공입찰ㆍMASㆍ이음장터ㆍ벤처나라ㆍ혁신장터) 컨설팅 지원사업 모집 공고",
      "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000120282",
@@ -793,7 +783,18 @@
   },
   "중소기업 정책자금": {
    "kind": "notice",
-   "national": [],
+   "national": [
+    {
+     "id": "PBLN_000000000128114",
+     "title": "2026년 중소기업 정책자금 융자계획 변경 공고",
+     "url": "https://www.bizinfo.go.kr/sii/siia/selectSIIA200Detail.do?pblancId=PBLN_000000000128114",
+     "org": "중소벤처기업부",
+     "start": null,
+     "end": null,
+     "period": "예산 소진시까지",
+     "regions": []
+    }
+   ],
    "local": []
   },
   "예비창업패키지": {
